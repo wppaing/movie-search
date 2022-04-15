@@ -10,16 +10,12 @@ export default function App() {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (keyword.length === 0) {
-        console.log("State reset");
-        setOptions([]);
-      } else {
-        search(keyword);
-      }
-    }, 1500);
-
-    return () => clearTimeout(delayDebounceFn);
+    if (keyword.length === 0) {
+      console.log("State reset");
+      setOptions([]);
+    } else {
+      search(keyword);
+    }
   }, [keyword]);
 
   const search = async (keyword) => {
